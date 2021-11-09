@@ -1,11 +1,22 @@
-<h1>My tasks</h1>
+<h1>My Tasks</h1>
 <% @tasks.each do |task| %>
   <ul style="list-style: none">
     <li>
       <%= check_box_tag(:title) %>
-      <%= link_to each_task_path(task.id) do %>
+      <%= link_to task_path(task.id) do %>
         <%= label_tag(:title, "#{task.title}") %>
       <% end  %>
+      <%= link_to ('<i class="fas fa-trash-alt"></i>').html_safe, delete_task_path(task.id), method: :delete, data: { confirm: "Are you sure?"} %>
     </li>
   </ul>
 <% end %>
+
+<div class="add-link">
+
+  <%= link_to new_task_path do %>
+  <div style="display: flex">
+    <i class="fas fa-plus"></i>
+    <p style="margin: 0">Add new task</p>
+  </div>
+  <% end %>
+</div>
